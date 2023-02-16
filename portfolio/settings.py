@@ -15,7 +15,8 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+import django_heroku
+import dj_database_url
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-sa5sbv!e%yw9=zzae6f+ep=5+yggbi6asxf&m@es_f!)k9p#tj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh','127.0.0.1','https://portfolionazar.herokuapp.com/','portfolionazar.herokuapp.com','www.portfolionazar.herokuapp.com']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -130,7 +131,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-
+django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
