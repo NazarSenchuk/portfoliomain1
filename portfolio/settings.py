@@ -135,4 +135,14 @@ django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_QUETYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID ="AKIA6H6YVHWAKILFCFVY"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME ="portfolio12312"
+AWS_DEFAULT_ACL = None
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+AWS_S3_FILE_OVERWRITE= False
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
