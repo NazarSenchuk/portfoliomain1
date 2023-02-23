@@ -15,18 +15,24 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+import django_heroku
+import dj_database_url
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sa5sbv!e%yw9=zzae6f+ep=5+yggbi6asxf&m@es_f!)k9p#tj'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh','127.0.0.1','https://portfolionazar.herokuapp.com/','portfolionazar.herokuapp.com','www.portfolionazar.herokuapp.com']
+ALLOWED_HOSTS = ["*"]
+SECRET_KEY = "hellomyfriend"
 
+DEBUG = int(os.environ.get("DEBUG", default=0))
+
+# 'DJANGO_ALLOWED_HOSTS' должен быть в виде одной строки с хостами разделенными символом пробела
+# Для примера: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 
 # Application definition
 
@@ -78,8 +84,14 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER':'senchuknazardb',
+        'PASSWORD': 'senchuknazar6',
+        'HOST' : "database-2.cvovowomxjfc.us-east-1.rds.amazonaws.com",
+        'POST': '5432'
+
+
     }
 }
 
@@ -115,7 +127,7 @@ USE_I18N = True
 USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_POST = 587
+EMAIL_POST = 465
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'senchuknazar6@gmail.com'
 EMAIL_HOST_PASSWORD = 'spixeipfwuapoicb'
@@ -130,8 +142,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-
+django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_QUETYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID ="AKIA6H6YVHWAKILFCFVY"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME ="portfolio12312"
+AWS_DEFAULT_ACL = None
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+AWS_S3_FILE_OVERWRITE= False
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
